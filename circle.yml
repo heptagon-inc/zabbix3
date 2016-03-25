@@ -8,14 +8,16 @@ machine:
 dependencies:
   cache_directories:
     - |
-      .terraform
+      ~/.terraform
   pre:
     - |
       mkdir -p ~/.terraform
-      cd ~/.terraform
-      curl -LO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-      unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-      rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      if [ -z "$(ls -A ~/.terraform)" ]; then
+        cd ~/.terraform
+        curl -LO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+        unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+        rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      fi
 
 test:
   pre:
