@@ -1,0 +1,37 @@
+machine:
+  timezone: Asia/Tokyo
+  environment:
+    TERRAFORM_VERSION: 0.6.13
+    PATH: $HOME/.terraform:$PATH
+    AWS_DEFAULT_REGION: ap-northeast-1
+
+dependencies:
+  cache_directories:
+    - |
+      "~/.terraform"
+  pre:
+    - |
+      mkdir -p ~/.terraform
+      cd ~/.terraform
+      curl -LO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+
+test:
+  pre:
+    - |
+      terraform remote config -backend=S3 -backend-config="bucket=terraform-tfstate-zabbix3" -backend-config="key=terraform-tfstate-zabbix3"
+      terraform remote pull
+  override:
+    - |
+      terraform plan
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - |
+        terraform remote config -backend=S3 -backend-config="bucket=terraform-tfstate-zabbix3" -backend-config="key=terraform-tfstate-zabbix3"
+        terraform remote pull
+        terraform apply
+        terraform remote push

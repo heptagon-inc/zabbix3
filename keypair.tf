@@ -1,0 +1,4 @@
+resource "aws_key_pair" "ec2-tokyo-key" {
+  key_name = "ec2-tokyo-key" 
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDopDYvoAitNj43qNK1QLHMDm5DgkOoWwVXuSiBwJ306I1GWf+4plvMYgmo6eq1Wc5DbsVu6AN6N78FuwiX+zsWfe4oVIQUlL2JkWZenZEA/x04Y24FWC1AAFpiC9dfBjbg39xn3jVY9mIOeHhxozQLCMgEIuPt/iWz6mCNlRsUgSTVwvKv1GEThNjDInq8cziU0CmCbyrdH/MRAX+kCntx+zGiQUwECapenalDaHAAMpqGPEFZnqslzzP3guLhClSLyqhTGeig+tqKw0zZDGtnzqpMy2Ulv82HqCOKCeQnvgo+gIWCsNssTbvp4e70XOsEhfukATg6UcomGCo948bR ec2-tokyo-key"
+}
