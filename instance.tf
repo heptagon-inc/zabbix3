@@ -1,6 +1,6 @@
 resource "aws_instance" "zabbix3" {
     ami = "ami-f80e0596"
-    instance_type = "t2.nano"
+    instance_type = "t2.micro"
     key_name = "${aws_key_pair.ec2-tokyo-key.key_name}"
 	subnet_id = "${aws_subnet.vpc-zabbix3-subnet-1a.id}"
     security_groups = ["${aws_security_group.zabbix3-sg.id}"]
