@@ -15,6 +15,30 @@ resource "aws_security_group_rule" "allow_ssh_access" {
 	cidr_blocks = ["0.0.0.0/0"]
 	security_group_id = "${aws_security_group.zabbix3-sg.id}"
 }
+resource "aws_security_group_rule" "allow_zabbix_server_access" {
+	type = "ingress"
+	from_port = 10051
+	to_port = 10051
+	protocol = "tcp"
+	cidr_blocks = ["0.0.0.0/0"]
+	security_group_id = "${aws_security_group.zabbix3-sg.id}"
+}
+resource "aws_security_group_rule" "allow_http_access" {
+	type = "ingress"
+	from_port = 80
+	to_port = 80
+	protocol = "tcp"
+	cidr_blocks = ["0.0.0.0/0"]
+	security_group_id = "${aws_security_group.zabbix3-sg.id}"
+}
+resource "aws_security_group_rule" "allow_https_access" {
+	type = "ingress"
+	from_port = 443
+	to_port = 443
+	protocol = "tcp"
+	cidr_blocks = ["0.0.0.0/0"]
+	security_group_id = "${aws_security_group.zabbix3-sg.id}"
+}
 resource "aws_security_group_rule" "allow_all_1" {
 	type = "egress"
 	from_port = 0
