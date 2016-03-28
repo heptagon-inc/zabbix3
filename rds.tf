@@ -77,4 +77,16 @@ resource "aws_db_parameter_group" "zabbix3-db-pg" {
 		value = "Asia/Tokyo"
 		apply_method = "immediate"
 	}
+
+	parameter {
+		name = "innodb_large_prefix"
+		value = "1"
+		apply_method = "immediate"
+	}
+
+	parameter {
+		name = "innodb_file_format"
+		value = "Barracuda"
+		apply_method = "immediate"
+	}
 }
