@@ -1,0 +1,5 @@
+{
+	"eventid":"$input.params().path.get('eventid')",
+	"useragent": "$context.identity.userAgent"
+}
+
